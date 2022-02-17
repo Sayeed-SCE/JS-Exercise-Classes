@@ -156,19 +156,19 @@ class Instructor extends Lambdasian {
     this.specialty = props.specialty;
     this.favLanguage = props.favLanguage;
     this.catchPhrase = props.catchPhrase;
-    this.subject = props.subject;
-    this.student = props.student;
   }
-  demo(){
-    return `Today we are learning about ${this.subject}`;
+  demo(subject){
+    return `Today we are learning about ${subject}`;
 
     }
 
-  grade(){
-    return `${this.student.name} receives a perfect score on ${this.subject}`;
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`;
   }
-
 }
+const obj = {name: 'Mike', age: 28, location: 'San Francisco', specialty: 'redux', favLanguage: 'JavaScript, Python, Elm etc.', catchPhrase: `Don't forget the homies`};
+const instructor2 = new Instructor(obj);
+console.log(instructor2);
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -187,11 +187,31 @@ class Instructor extends Lambdasian {
 class Student extends Lambdasian{
   constructor(props){
     super(props);
+    this.previousBackground = props.previousBackground;
+    this.className = props.className;
+    this.favSubjects = props.favSubjects;
+  }
 
+  listSubjects(){
+    return `Loving ${this.favSubjects.join(', ')}`;
+  }
 
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+
+  }
+  sprintChallenge(subject){
+
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
    
 }
+
+const student1 = new Student ({name: 'Mike', previousBackground: 'Student', className: 'CS132', favSubjects: ['HTML', 'CSS', 'JS!'] });
+
+console.log(student1.listSubjects());
+
+
 
 /*
   TASK 6
@@ -206,7 +226,19 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor {
+  constructor(props){
+    super(props);
+    this.gradClassName = props.gradClassName;
+    this.favInstructor = props.favInstructor;
+
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(name, subject){
+    return `${name} debugs ${this.name}'s code on ${subject}`;
+  }
    
 }
 /*
